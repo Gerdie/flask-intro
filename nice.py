@@ -51,6 +51,16 @@ def say_hello():
           </select>
           <input type="submit">
         </form>
+        <form action="/diss">
+          <label>What's your name? <input type="text" name="person"></label>
+          <select name="diss">
+            <option value="bad">bad</option>
+            <option value="mean">mean</option>
+            <option value="smelly">smelly</option>
+            <option value="rude">rude</option>
+          </select>
+          <input type="submit">
+        </form>
       </body>
     </html>
     """
@@ -63,7 +73,6 @@ def greet_person():
     player = request.args.get("person")
 
     compliment = request.args.get("compliment")
-    print x
     return """
     <!doctype html>
     <html>
@@ -75,6 +84,26 @@ def greet_person():
       </body>
     </html>
     """ % (player, compliment)
+
+
+@app.route('/diss')
+def diss_person():
+    """Get user by name."""
+
+    player = request.args.get("person")
+
+    diss = request.args.get("diss")
+    return """
+    <!doctype html>
+    <html>
+      <head>
+        <title>A Diss</title>
+      </head>
+      <body>
+        Hi %s I think you're %s!
+      </body>
+    </html>
+    """ % (player, diss)
 
 
 if __name__ == '__main__':
